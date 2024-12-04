@@ -16,6 +16,7 @@ function Cart() {
       date: new Date().toLocaleDateString()
     }
     setOrders((prev)=> [...prev, prd])
+    navigate('/orders')
 
   }
   return (
