@@ -1,5 +1,5 @@
-import { createContext, useState, useContext } from "react";
-import CartModal from "./components/CartModal";
+import { createContext, useState, useContext, useEffect } from "react";
+import itemData from "./data/itemData";
 
 const itemContext = createContext();
 
@@ -10,55 +10,63 @@ function useValue() {
 
 function CustomItemContext({ children }) {
   const [total, setTotal] = useState(0);
-  const [item, setItem] = useState(0);
-  const [showCart, setShowCart] = useState(false);
-  const [cart, setCart] = useState([]);
+  const [usr, setUsr] = useState('');
+  const [itemList, setItemList] = useState([...itemData]);
+  const [login, setLogin] = useState(false)
+  const [cartItems, setCartItems] = useState([]);
+  const [price, setPrice] = useState(0);
+  const [category, setCategory] = useState('');
+  const [search, setSearch] = useState('');
+  const [orders, setOrders] = useState([]);
+
+  useEffect(()=>{
+    let filteredItems = itemData.filter((item)=>{
+        var itemS = search ? item.name.toLowerCase().includes(search.toLowerCase()) : true 
+        var itemP = price>0 ? item.price <= price : true
+        var itemC = category ? item.category === category : true
+
+        return itemS && itemC && itemP
+    })
+    setItemList(filteredItems)
+  }, [price, category, search])
+
 
   const handleAdd = (prod) => {
-    const index = cart.findIndex((item) => item.id === prod.id);
-
+    const index = cartItems.findIndex((item) => item.id === prod.id);
     if (index === -1) {
-      setCart([...cart, { ...prod, qty: 1 }]);
-      console.log(cart);
+      setCartItems([...cartItems, { ...prod, qty: 1 }]);
       setTotal(total + prod.price);
     } else {
-      cart[index].qty++;
-      setCart(cart);
-      console.log(cart);
-      setTotal(total + cart[index].price);
+        cartItems[index].qty+=1;
+        setCartItems([...cartItems])
+        setTotal(total + cartItems[index].price);
     }
-    setItem(item + 1);
   };
 
   const handleRemove = (id) => {
-    const index = cart.findIndex((item) => item.id === id);
-
+    const index = cartItems.findIndex((item) => item.id === id);
     if (index !== -1) {
-      cart[index].qty--;
-      setItem(item - 1);
-      setTotal(total - cart[index].price);
-      if (cart[index].qty === 0) {
-        cart.splice(index, 1);
+      cartItems[index].qty-=1;
+      setCartItems([...cartItems]);
+      console.log(cartItems)
+      setTotal(total - cartItems[index].price);
+      if (cartItems[index].qty === 0) {
+        cartItems.splice(index, 1);
       }
-      setCart(cart);
+      setCartItems(cartItems);
     }
   };
 
-  const clear = () => {
-    setTotal(0);
-    setItem(0);
-    setCart([]);
-  };
-
-  const toggle = () => {
-    setShowCart(!showCart);
-  };
-
+  console.log(orders);
+  
   return (
-    <itemContext.Provider
-      value={{ total, item, handleAdd, handleRemove, clear, toggle, cart }}
-    >
-      {showCart && <CartModal toggle={toggle} />}
+    <itemContext.Provider 
+    value={{
+      setLogin, itemList, setCategory, 
+      setPrice, setSearch, login, 
+      price, usr, setUsr, total, 
+      setCartItems, cartItems, handleAdd,
+      handleRemove, orders, setOrders}}>
       {children}
     </itemContext.Provider>
   );

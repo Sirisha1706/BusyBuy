@@ -1,0 +1,58 @@
+.wrapper {
+    height: 100%;
+    padding: 1rem;
+    
+  }
+.filter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.items{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    justify-content: center;
+    gap: 0.2rem;
+  }
+.itemCard {
+    margin: 1rem;
+    padding: 1rem;
+    font-family: 'Unbounded', sans-serif;
+    background-color: whitesmoke;
+    height: auto;
+    border-radius: 20px;
+}
+
+.image{
+    width: 20vw;
+    height: 30vh;
+}
+
+.itemButton {
+    background-color: rgb(102, 43, 250);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.itemButton:hover {
+    transform: scale(0.9);
+    box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 1);
+    background-color: white;
+    color: rgb(102, 43, 250);
+}
+
+.itemDetails{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itemDetails img{
+  width: 1.7vw;
+  height: auto;
+  margin: 0 .5em;
+}

@@ -1,0 +1,27 @@
+.wrapper {
+    height: 100%;
+    padding: 1rem;
+    margin: 0 auto 4rem;    
+  }
+
+  .filter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    font-size: 1.2rem;
+    background-color: whitesmoke;
+    
+    text-align: center;
+}
+
+table th{
+    border-bottom: 2px solid rgb(102, 43, 250);
+    padding: 0.5rem;
+}
+table td{
+    padding: 0.5rem
+}

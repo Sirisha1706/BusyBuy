@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--primary-color);
+  padding: 0 1rem;
+}
+
+.button {
+  display: flex;
+  font-size: 1.2rem;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+  align-items: center;
+  width: auto;
+  background-color: white;
+}
+.buttonsWrapper{
+  display: flex;
+}
+.button img{
+  width: 3vw;
+  height: auto;
+  margin: 0 .5em;
+}
+.button:hover {
+  color: black;
+}

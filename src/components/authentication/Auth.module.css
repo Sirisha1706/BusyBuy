@@ -1,0 +1,29 @@
+.container{
+    position: absolute;
+    background-color: whitesmoke;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 20px;
+    width: 40vw;
+    left: 30vw;
+    top: 20vh
+}
+
+.form{
+    margin: 1rem;
+}
+
+.button{
+    background-color: rgb(102, 43, 250);
+    border-radius: 15px;
+    color: white;
+    font-size: 1rem;
+    width: 20vw;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    transition: all 0.2s ease-in-out;
+}
+.heading{
+    color:rgb(102, 43, 250);
+}
