@@ -1,12 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './orders.module.css'
 import { useValue } from '../../itemContext';
+import { toast } from 'react-toastify';
 
 const Orders = ()=>{
     const {login, orders} = useValue();
     const navigate = useNavigate();
     if(!login)
         navigate('/login')
+    if(!orders)
+        toast.warning('No Orders made')
     return(
         <div className={styles.wrapper}>  
                 <h3>My Orders:</h3>
